@@ -54,7 +54,50 @@ catalog:
     pullRequestBranchName: backstage-integration
   rules:
     - allow: [Component, System, API, Resource, Location, User, Group]
-  locations: []
+  locations:
+    # Local example data, file locations are relative to the backend process, typically `packages/backend`
+    - type: file
+      target: ../../examples/entities.yaml
+
+    # Local example template
+    - type: file
+      target: ../../examples/template/template.yaml
+      rules:
+        - allow: [Template]
+
+    - type: file
+      target: ../../Template/create-react-app/template.yaml
+      rules:
+        - allow: [Template]
+    
+    - type: file
+      target: ../../Template/clean-architecture-app/template.yaml
+      rules:
+        - allow: [Template]
+    
+    - type: file
+      target: ../../Template/docs-template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: file
+      target: ../../Template/docs-template-cookiecutter/template.yaml
+      rules:
+        - allow: [Template]
+    
+    - type: file
+      target: ../../Template/pull-request/template.yaml
+      rules:
+        - allow: [Template]
+    
+    - type: file
+      target: ../../Template/rails-demo/template.yaml
+      rules:
+        - allow: [Template]
+    
+    - type: file
+      target: ../../Template/springboot-gprc-template/template.yaml
+      rules:
+        - allow: [Template]
 
 techdocs:
   builder: 'local' # Alternatives - 'external'
