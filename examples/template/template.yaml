@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: example-nodejs-template
-  title: Example Node.js Template
+  title: Node.js Template
   description: An example template for the scaffolder that creates a simple Node.js service
 spec:
   owner: user:guest
@@ -41,15 +41,17 @@ spec:
     # Each step executes an action, in this case one templates files into the working directory.
     - id: fetch-base
       name: Fetch Base
-      action: fetch:template
+      action: fetch:cookiecutter
       input:
         url: ./content
         values:
-          name: ${{ parameters.name }}
+          project_name: ${{ parameters.name }}
+          repo_url: ${{ parameters.repoUrl }}
+          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+        copyWithoutRender:
+          - '.github/*'
 
     # This step publishes the contents of the working directory to GitHub.
-    # If you or your organization prefer another default branch name over 'main'
-    # you can change that here.
     - id: publish
       name: Publish
       action: publish:github
@@ -57,7 +59,6 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
-        defaultBranch: 'main'
 
     # The final step is to register our new component in the catalog.
     - id: register

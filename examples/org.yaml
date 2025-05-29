@@ -1,17 +1,41 @@
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: guest
-spec:
-  memberOf: [guests]
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: guests
+  name: dev
 spec:
   type: team
   children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: nextrun-rcs
+spec:
+  type: team
+  children: [nexturn-rcs]
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rakeshnexturn # Replace with your actual GitHub username
+spec:
+  memberOf: [dev]
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: madankumar-devops # Replace with your actual GitHub username
+spec:
+  memberOf: [dev]
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: KaushikseetharamNexTurn # Replace with your actual GitHub username
+spec:
+  memberOf: [dev]
